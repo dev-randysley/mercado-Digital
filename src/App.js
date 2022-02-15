@@ -7,7 +7,7 @@ function App() {
     
     <div className="App">
       <NavBar />
-      <ItemListContainer texto="Texto del item " />
+      <ItemListContainer />
     </div>
   );
 }
