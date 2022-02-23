@@ -1,5 +1,6 @@
 import React from 'react';
 import ItemCount from './ItemCount';
+import ItemList from './ItemList';
 
 const ItemListContainer = (props) =>{
     // el componente debe tener un icono y ubicarlo en el navBar
@@ -11,7 +12,8 @@ const ItemListContainer = (props) =>{
     
     return(
         <div>
-            <ItemCount stock="10" initial="1" onAdd={onAdd}/> 
+            <ItemList productos = {props.productos}/>
+            {/* <ItemCount stock="10" initial="1" onAdd={onAdd}/>  */}
         </div>
     )
 }
