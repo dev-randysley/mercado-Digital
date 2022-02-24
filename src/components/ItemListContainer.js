@@ -3,7 +3,6 @@ import ItemCount from './ItemCount';
 import ItemList from './ItemList';
 
 const ItemListContainer = (props) =>{
-    // el componente debe tener un icono y ubicarlo en el navBar
 
     const onAdd = (value) =>{
         alert("Se agrego el producto a su carrito de compras")

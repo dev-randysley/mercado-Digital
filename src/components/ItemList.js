@@ -7,7 +7,7 @@ const ItemList = (props) =>{
            productos.map(p => {
                return (
                 <div key  = {p.id}>
-                    <Item title={p.title} description ={p.description} price = {p.price} pictureUrl = {p.pictureUrl} />
+                    <Item title={p.title} description ={p.description} price = {p.price} pictureUrl = {p.image} />
                 </div>
             )
            })
