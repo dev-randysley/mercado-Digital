@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CartWidget = () =>{
+export const CartWidget = () =>{
     // el componente debe tener un icono y ubicarlo en el navBar
     return(
         <div>
@@ -12,4 +12,3 @@ const CartWidget = () =>{
     )
 }
 
-export default CartWidget

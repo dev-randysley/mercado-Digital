@@ -1,6 +1,7 @@
-import React from 'react';
+import { Button } from "react-bootstrap";
+import {Link} from 'react-router-dom';
 
-const Item = (props) =>{
+export const Item = (props) =>{
  
     return(
         <div className="card mb-2 w-75 p-1 m-2 mx-auto">
@@ -11,9 +12,8 @@ const Item = (props) =>{
           <div className="col-md-3">
             <div className="card-body">
               <h5 className="card-title">{props.title}</h5>
-              <p className="card-text">{props.description}</p>
-              <p className="card-text">{props.price} $</p>
-              <button>+Info</button>
+              <p className="card-text" style={{fontSize:25}}>{props.price} $</p>
+              <Link to={`/item/${props.id}`} className='nav-link'>+ Info</Link>
             </div>
           </div>
           
@@ -21,5 +21,3 @@ const Item = (props) =>{
       </div>
     )
 }
-
-export default Item

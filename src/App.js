@@ -1,44 +1,24 @@
 import './App.css';
-import NavBar from './components/NavBar';
-import ItemListContainer from './components/ItemListContainer';
-import ItemDetailContainer from './components/ItemDetailContainer';
-import { useEffect, useState } from 'react';
-
+import {NavBar} from './components/NavBar/NavBar';
+import {ItemListContainer} from './components/ItemListContainer/ItemListContainer';
+import {ItemDetailContainer} from './components/ItemDetailContainer/ItemDetailContainer';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import { Footer } from './components/Footer/Footer';
 
 function App() {
-  const [productos, setProductos] = useState([]);
-  
-  
-
-useEffect(() =>{
-
-  const getProducts = async()=>{
-
-    const response = await fetch('https://fakestoreapi.com/products');
-    const result = await response.json();
-    setProductos(result)
-   
-  }
-  getProducts();
-},[])
-
-const getItems = () =>{
-  return new Promise((resolve, refect) =>{
-      setTimeout(() =>{
-          fetch('https://fakestoreapi.com/products')
-          .then((response) =>{
-            resolve(response.json());
-          })
-      },2000)
-  })
-}
-
-
+ 
   return (
     <div className="App">
-      <NavBar />
-      <ItemListContainer productos = {productos}/>
-      <ItemDetailContainer getProduct = {getItems}/>
+    <BrowserRouter>
+    <NavBar />
+    <Routes>
+      <Route path ="/" element={<ItemListContainer />} />
+      <Route path ="/category/:categoryID" element={<ItemListContainer />} />
+      <Route path ="/item/:itemID" element={<ItemDetailContainer />} />
+      <Route path ="/promotions/:prom" element={<ItemListContainer />} />
+    </Routes>
+    <Footer/>
+    </BrowserRouter>
     </div>
   );
 }
