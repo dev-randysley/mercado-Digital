@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 
 export const ItemListContainer = () =>{
     const {categoryID} = useParams();
-    console.log(categoryID);
     const [productos, setProductos] = useState([]);
     const getProducts = async()=>{
         const response = await fetch('https://fakestoreapi.com/products');
@@ -15,19 +14,18 @@ export const ItemListContainer = () =>{
             setProductos(result)
     }
 
+    
+
     useEffect(() =>{
-     getProducts();
+        getProducts();
     },[categoryID])
 
-    const onAdd = (value) =>{
-        alert("Se agrego el producto a su carrito de compras")
-        console.log('valor ingresado al carrito: ',value);
-    }
+    
     
     return(
         <div>
         {
-            productos.length === 0 ? <p> <h2>Cargando el contenido </h2> </p>:<ItemList productos = {productos}/>
+            productos.length === 0 ? <p> <h2>Cargando el contenido </h2> </p>:<ItemList productos = {productos} />
         }
             
         </div>

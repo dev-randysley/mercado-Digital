@@ -11,6 +11,10 @@ export const ItemDetailContainer = (props) =>{
         setProducto(result.find(p => p.id==itemID))
     }
 
+    const countCard = (cantidad) =>{
+        props.countAddToCard(cantidad);
+    }
+
     useEffect(()=>{
         setTimeout(()=>{
            getItem();
@@ -20,7 +24,7 @@ export const ItemDetailContainer = (props) =>{
     return(
         <div>
         {
-            producto.length === 0 ? <p> <h2>Cargando el contenido </h2> </p> :<ItemDetail title={producto.title} description ={producto.description} price = {producto.price} pictureUrl = {producto.image} />
+            producto.length === 0 ? <p> <h2>Cargando el contenido </h2> </p> :<ItemDetail title={producto.title} description ={producto.description} price = {producto.price} pictureUrl = {producto.image} count ={producto.rating.count} countCard={(cantidad) =>countCard(cantidad)}/>
         }
         </div>
            

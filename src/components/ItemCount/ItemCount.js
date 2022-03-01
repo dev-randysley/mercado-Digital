@@ -2,38 +2,34 @@ import {useState} from 'react';
 import { Button,Form } from 'react-bootstrap';
 
 
-export const ItemCount = ({stock, initial,onAdd}) =>{
+export const ItemCount = ({stock, initial,addCard}) =>{
     
-    const [contador, setContador]= useState(parseInt(initial));
-    const [stockInicial, setStock]= useState(parseInt(stock));
+    const [contador, setContador]= useState(initial);
+    const [stockInicial, setStock]= useState(stock);
     return(
         <>
         <Form>
-            <fieldset >
                 <Form.Group className="mb-3">
-                <Form.Control id="disabledTextInput" placeholder="Valor" style={{textAlign:'center'}}/>
+                <Form.Label>{contador}</Form.Label>
                 </Form.Group>
                 
-                <Button variant="light" onClick={() =>{
+                <Button variant="dark" onClick={() =>{
                 if(contador >1 ){
                     setContador(contador -1);
                 }
             }}> - </Button>   
 
-            <Button variant="light" onClick={()=>{
-                if(stockInicial != 0){
-                    onAdd(contador);
-                }else{
-                    alert("No cuenta con Stock para el producto seleccionado")}
+            <Button variant="dark" onClick={()=>{
+                addCard(contador);
            }}>Agregar al Carrito</Button>
             
-            <Button variant="light" onClick={() =>{
+            <Button variant="dark" onClick={() =>{
                 if(contador < stockInicial){
                     setContador(contador +1);
                     
                 }
             }}> + </Button>  
-            </fieldset>
+            
         </Form>
         </>
     )

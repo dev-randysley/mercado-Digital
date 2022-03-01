@@ -2,8 +2,7 @@ import {CartWidget} from '../CartWidget/CartWidget';
 import {NavDropdown} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
-export const NavBar = () => {
-
+export const NavBar = (props) => {
     return(
         <>
             <div>
@@ -29,7 +28,10 @@ export const NavBar = () => {
                                 <Link to="/promotions" className='nav-link'>Promociones</Link>
                             </div>
                         </div>
-                        <CartWidget />
+                        {
+                            <Link to="/cart" className='nav-link' style={{color:'black'}}><CartWidget cantidad ={props.cantidad}/></Link>
+                        }
+                        
                     </div>
                 </nav>
             </div>
