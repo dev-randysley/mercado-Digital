@@ -3,18 +3,12 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 export const Promotions = () =>{
-    const {categoryId} = useParams();
     const [productos, setProductos] = useState([]);
-  
     const getProducts = async()=>{
         const response = await fetch('https://fakestoreapi.com/products');
         const result = await response.json();
-        if(categoryId !== undefined){
-            setProductos(result.filter(p => p.category === categoryId))
-        }
-        const random = ()=>Math.floor((Math.random() * (productos.length)));
-        console.log(random)
-        setProductos(result)
+        const numRandom = Math.floor(Math.random() * 20)
+        setProductos(result.slice(numRandom))
     }
 
     useEffect(() =>{
@@ -24,7 +18,10 @@ export const Promotions = () =>{
     
     return(
         <div>
-            <ItemList productos = {productos}/>
+        {
+            productos.length === 0 ? <p> <h2>Cargando el contenido </h2> </p>:<ItemList productos = {productos}/>
+        }
+            
         </div>
     )
 }

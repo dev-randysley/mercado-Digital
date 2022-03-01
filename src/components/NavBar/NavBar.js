@@ -26,7 +26,7 @@ export const NavBar = () => {
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item ><Link to="/category/jewelery" className='nav-link'>Accesorios</Link></NavDropdown.Item>
                                 </NavDropdown>
-                                <Link to="/promotions/prom" className='nav-link'>Promociones</Link>
+                                <Link to="/promotions" className='nav-link'>Promociones</Link>
                             </div>
                         </div>
                         <CartWidget />

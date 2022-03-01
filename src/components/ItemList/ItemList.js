@@ -5,15 +5,13 @@ import { Link } from 'react-router-dom';
 
 export const ItemList = (props) =>{
     const productos = props.productos
-    console.log(productos);
         return (
            productos.map(p => {
                return (
                    
-                        <div key  = {p.id}>
-                            <Item title={p.title} description ={p.description} price = {p.price} pictureUrl = {p.image} id = {p.id}/>
-                        </div>
-                    
+                <div key  = {p.id}>
+                    <Item title={p.title} description ={p.description} price = {p.price} pictureUrl = {p.image} id = {p.id}/>
+                </div>
             )
            })
         )    
