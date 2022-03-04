@@ -2,15 +2,20 @@ import {ItemCount} from "../ItemCount/ItemCount";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+
 
 export const ItemDetail = (props) =>{
-  const [cantidad,setCantidad] = useState(0);
+const [cantidad, setCantidad] = useState(0);
+
+
   const onAdd = (cantidadAgregarCarrito) =>{
-    
-    setCantidad(cantidadAgregarCarrito);
-    // pasamos la informacion de la cantidada del carrito al componente padre
-    props.countCard(cantidadAgregarCarrito);
-    
+    const newItem ={title:props.title,description:props.description,price:props.price,pictureUrl:props.pictureUrl, count:props.count, id:props.id }
+    if(!props.isInCart(props.id)){
+      props.addItem(newItem,cantidadAgregarCarrito);
+      setCantidad(cantidadAgregarCarrito)
+    }
+     
 }
     
     return(
@@ -27,9 +32,11 @@ export const ItemDetail = (props) =>{
               <p className="card-text">{props.price} $</p>
              {
               cantidad ===0 ? <ItemCount stock={props.count} initial ={1} addCard={(cantidad) =>{onAdd(cantidad)}} /> : 
-              <Button> <Link to="/cart" className='nav-link' style={{color:'white'}}>Terminar Compra</Link></Button>
+              <div className="btn-group">
+              <Button> <Link to="/cart" className='nav-link' style={{color:'white'}}>Terminar Compra</Link></Button>{' '}
+              <Button> <Link to="/" className='nav-link' style={{color:'white'}}>Seguir comprando</Link></Button>
+              </div>
              }
-
             </div>
           </div>
         </div>

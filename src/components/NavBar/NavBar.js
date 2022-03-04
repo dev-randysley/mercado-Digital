@@ -1,8 +1,12 @@
 import {CartWidget} from '../CartWidget/CartWidget';
 import {NavDropdown} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import { contextCart } from '../../context/context';
+import { useContext } from "react";
 
-export const NavBar = (props) => {
+export const NavBar = () => {
+
+    const context = useContext(contextCart);
     return(
         <>
             <div>
@@ -29,7 +33,7 @@ export const NavBar = (props) => {
                             </div>
                         </div>
                         {
-                            <Link to="/cart" className='nav-link' style={{color:'black'}}><CartWidget cantidad ={props.cantidad}/></Link>
+                            <Link to="/cart" className='nav-link' style={{color:'black'}}><CartWidget count={context.count} /></Link>
                         }
                         
                     </div>

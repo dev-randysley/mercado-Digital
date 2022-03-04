@@ -21,6 +21,7 @@ export const ItemCount = ({stock, initial,addCard}) =>{
 
             <Button variant="dark" onClick={()=>{
                 addCard(contador);
+                
            }}>Agregar al Carrito</Button>
             
             <Button variant="dark" onClick={() =>{
