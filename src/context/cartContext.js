@@ -4,25 +4,35 @@ import { contextCart } from "./context";
 
 export const CartContext = ({children})=>{
 
-    const [productos,setProductos] = useState([]);
+    const [cart,setCart] = useState([]);
     const [count, setCount] = useState(0);
 
     const addItem=(item, quantity) =>{
-        setProductos([...productos,{...item,quantity:quantity}]);
-        setCount(prev => prev + quantity);
+        let items = { ...item, quantity};
+        if(!isInCart(item.id)){
+            setCart([...cart,items])
+            setCount(prev => prev + quantity);
+        }
     }
 
     const removeItem = (itemId)=>{
-        setProductos(prev =>prev.filter(p => p.item.id ===itemId))
+        let item = getItem(itemId)
+        setCart(cart.filter(p => p.id !==itemId))
+        setCount(prev => prev -item.quantity)
+    }
+
+    const getItem=(itemId)=>{
+        return cart.find(p => p.id === itemId)
     }
 
     const clear =() =>{
-        setProductos([])
+        setCart([])
+        setCount(0)
     }
 
     const isInCart=(itemId)=>{
-        if(productos.length >0){
-            return productos.some(p => p.id ==itemId)
+        if(cart.length >0){
+            return cart.some(p => p.id === itemId)
         }
         return false
     }
@@ -30,7 +40,7 @@ export const CartContext = ({children})=>{
     
 
     return (
-        <contextCart.Provider value={{productos,addItem, isInCart, count}}>
+        <contextCart.Provider value={{cart,addItem, isInCart, count,setCount, removeItem,clear}}>
             {children}
         </contextCart.Provider>
     )

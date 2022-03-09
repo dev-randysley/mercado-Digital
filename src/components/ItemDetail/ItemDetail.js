@@ -11,10 +11,9 @@ const [cantidad, setCantidad] = useState(0);
 
   const onAdd = (cantidadAgregarCarrito) =>{
     const newItem ={title:props.title,description:props.description,price:props.price,pictureUrl:props.pictureUrl, count:props.count, id:props.id }
-    if(!props.isInCart(props.id)){
-      props.addItem(newItem,cantidadAgregarCarrito);
-      setCantidad(cantidadAgregarCarrito)
-    }
+    props.addItem(newItem,cantidadAgregarCarrito);
+    setCantidad(cantidadAgregarCarrito)
+    
      
 }
     

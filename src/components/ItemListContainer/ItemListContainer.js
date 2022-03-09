@@ -1,6 +1,7 @@
 import {ItemList} from '../ItemList/ItemList';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Spinner } from 'react-bootstrap';
 
 export const ItemListContainer = () =>{
     const {categoryID} = useParams();
@@ -25,7 +26,7 @@ export const ItemListContainer = () =>{
     return(
         <div>
         {
-            productos.length === 0 ? <p> <h2>Cargando el contenido </h2> </p>:<ItemList productos = {productos} />
+            productos.length === 0 ? <div> <br/> <Spinner animation="border" /> </div>: <ItemList productos = {productos} />
         }
             
         </div>
