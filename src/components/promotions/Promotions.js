@@ -1,21 +1,24 @@
 import {ItemList} from '../ItemList/ItemList';
 import { useEffect, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
+import { collection, getDocs} from 'firebase/firestore';
+import { db } from "../../utils/firebase";
 
 export const Promotions = () =>{
     const [productos, setProductos] = useState([]);
-    const getProducts = async()=>{
-        const response = await fetch('https://fakestoreapi.com/products');
-        const result = await response.json();
-        const numRandom = Math.floor(Math.random() * 20)
-        setProductos(result.slice(numRandom))
-    }
 
-    useEffect(() =>{
-      getProducts();
+    useEffect(()=>{
+        const getData = async()=>{
+            const query = collection(db, 'itemCollection');
+            const response = await getDocs(query);
+            const data = response.docs;
+            const items = data.map( doc => {return {id:doc.id,  ...doc.data()}});
+            const numRandom = Math.floor(Math.random() * 20)
+            setProductos(items.slice(numRandom))
+        }
+        getData();
     },[])
 
-    
     return(
         <div>
         {
