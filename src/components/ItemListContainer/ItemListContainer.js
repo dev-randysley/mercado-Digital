@@ -2,25 +2,34 @@ import {ItemList} from '../ItemList/ItemList';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';
+import { collection, getDocs,query, where } from 'firebase/firestore';
+import { db } from "../../utils/firebase";
 
 export const ItemListContainer = () =>{
     const {categoryID} = useParams();
     const [productos, setProductos] = useState([]);
-    const getProducts = async()=>{
-        const response = await fetch('https://fakestoreapi.com/products');
-        const result = await response.json();
-        if(categoryID)
-            setProductos(result.filter(p =>p.category === categoryID))
-        else
-            setProductos(result)
-    }
-
     
+    useEffect(()=>{
+        const getData = async()=>{
+            if(categoryID){
+                const q = query(collection(db, 'itemCollection'),where("categoryId","==",categoryID));
+                const response = await getDocs(q);
+                const data = response.docs;
+                const items = data.map( doc => {return {id:doc.id,  ...doc.data()}});
+                setProductos(items)
+            }
+            else{
+                const query = collection(db, 'itemCollection');
+                const response = await getDocs(query);
+                const data = response.docs;
+                const items = data.map( doc => {return {id:doc.id,  ...doc.data()}});
+                setProductos(items)
+            }
 
-    useEffect(() =>{
-        getProducts();
+        }
+        getData();
+        console.log(productos);
     },[categoryID])
-
     
     
     return(

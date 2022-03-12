@@ -6,7 +6,7 @@ export const CartWidget = ({count}) =>{
             </svg>
 
             {
-             count > 0 ? <span id ='CartCount'> {count}</span> : <span id ='CartCount'> 0</span> 
+             count > 0 ? <span id ='CartCount'> {count}</span> : <span id ='CartCount'> </span> 
             }
             
         </div>

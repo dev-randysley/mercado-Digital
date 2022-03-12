@@ -9,7 +9,7 @@ export const ItemList = (props) =>{
                return (
                    
                 <div key  = {p.id}>
-                    <Item title={p.title} description ={p.description} price = {p.price} pictureUrl = {p.image} id = {p.id}/>
+                    <Item title={p.title} description ={p.description} price = {p.price} pictureUrl = {p.imageId} id = {p.id}/>
                 </div>
             )
            })

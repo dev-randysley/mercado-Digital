@@ -1,12 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { contextCart } from "../../context/context";
 import { CartItem } from "../CartItem/CartItem";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
+
+
 export const Cart = ()=>{
-    const {cart,addItem, isInCart, count,setCount, removeItem, clear} = useContext(contextCart);
-    const [total,setTotal] = useState(0)
+
+    const {cart,removeItem, clear} = useContext(contextCart);
     return(
         <>
         <br/>

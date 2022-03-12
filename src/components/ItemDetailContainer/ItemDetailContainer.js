@@ -4,22 +4,24 @@ import {ItemDetail} from '../ItemDetail/ItemDetail';
 import { contextCart } from "../../context/context";
 import { useContext } from "react";
 import { Spinner } from 'react-bootstrap';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from "../../utils/firebase";
 
 export const ItemDetailContainer = (props) =>{
     const [producto, setProducto] = useState([]);
     const {itemID} = useParams();
     const context = useContext(contextCart);
-    const getItem = async()=>{
-        const response = await fetch('https://fakestoreapi.com/products');
-        const result = await response.json();
-        setProducto(result.find(p => p.id==itemID))
-    }
-
    
     useEffect(()=>{
-        setTimeout(()=>{
-           getItem();
-        },[2000])
+        const getData = async()=>{
+            const query = doc(db, 'itemCollection',itemID);
+            const response = await getDoc(query);
+            const item = response.data();
+            setProducto({id:itemID, ...item});
+            console.log('item despues',producto);
+            
+        }
+        getData();
     },[itemID])
 
     return(
@@ -31,8 +33,8 @@ export const ItemDetailContainer = (props) =>{
                 title={producto.title} 
                 description ={producto.description} 
                 price = {producto.price} 
-                pictureUrl = {producto.image} 
-                count ={producto.rating.count} 
+                pictureUrl = {producto.imageId} 
+                count ={producto.stock} 
                 addItem = {context.addItem}
                 isInCart = {context.isInCart}
                 

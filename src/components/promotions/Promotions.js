@@ -1,6 +1,6 @@
 import {ItemList} from '../ItemList/ItemList';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Spinner } from 'react-bootstrap';
 
 export const Promotions = () =>{
     const [productos, setProductos] = useState([]);
@@ -19,7 +19,7 @@ export const Promotions = () =>{
     return(
         <div>
         {
-            productos.length === 0 ? <p> <h2>Cargando el contenido </h2> </p>:<ItemList productos = {productos}/>
+            productos.length === 0 ? <div> <br/> <Spinner animation="border" /> </div>:<ItemList productos = {productos}/>
         }
             
         </div>
