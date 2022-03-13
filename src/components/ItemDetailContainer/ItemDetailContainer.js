@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import {ItemDetail} from '../ItemDetail/ItemDetail';
 import { contextCart } from "../../context/context";
-import { useContext } from "react";
 import { Spinner } from 'react-bootstrap';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from "../../utils/firebase";
 
-export const ItemDetailContainer = (props) =>{
+export const ItemDetailContainer = React.memo((props) =>{
     const [producto, setProducto] = useState([]);
     const {itemID} = useParams();
     const context = useContext(contextCart);
@@ -18,8 +18,6 @@ export const ItemDetailContainer = (props) =>{
             const response = await getDoc(query);
             const item = response.data();
             setProducto({id:itemID, ...item});
-            console.log('item despues',producto);
-            
         }
         getData();
     },[itemID])
@@ -44,5 +42,5 @@ export const ItemDetailContainer = (props) =>{
        
     )
     
-}
+})
 

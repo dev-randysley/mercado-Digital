@@ -26,7 +26,7 @@ const [cantidad, setCantidad] = useState(0);
           <div className="col-md-3">
             <div className="card-body">
               <h5 className="card-title">{props.title}</h5>
-              <p className="card-text">{props.description} $</p>
+              <p className="card-text">{props.description}</p>
               <p className="card-text">Cantidad disponible {props.count - cantidad} </p>
               <p className="card-text">{props.price} $</p>
              {

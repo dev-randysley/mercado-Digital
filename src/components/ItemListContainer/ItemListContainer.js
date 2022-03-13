@@ -1,3 +1,4 @@
+import React from 'react';
 import {ItemList} from '../ItemList/ItemList';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -5,7 +6,7 @@ import { Spinner } from 'react-bootstrap';
 import { collection, getDocs,query, where } from 'firebase/firestore';
 import { db } from "../../utils/firebase";
 
-export const ItemListContainer = () =>{
+export const ItemListContainer = React.memo(() =>{
     const {categoryID} = useParams();
     const [productos, setProductos] = useState([]);
     
@@ -28,7 +29,6 @@ export const ItemListContainer = () =>{
 
         }
         getData();
-        console.log(productos);
     },[categoryID])
     
     
@@ -40,4 +40,4 @@ export const ItemListContainer = () =>{
             
         </div>
     )
-}
+})

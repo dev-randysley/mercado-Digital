@@ -1,10 +1,9 @@
 import { Button } from "react-bootstrap";
 
 export const CartItem=({item,removeItem}) =>{
-    console.log(item);
     return(
         <>
-            <div className="card mb-3 ms-5" style={{maxWidth:'1000px'}}>
+            <div className="card mb-3 ms-4" style={{maxWidth:'1000px',padding:"5px", borderRadius: '10px'}}>
                 <div className="row g-0">
                     <div className="col-md-4">
                         <img src={item.pictureUrl} className="img-fluid rounded-start" alt={item.title}/>
